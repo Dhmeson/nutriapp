@@ -1,0 +1,92 @@
+// SeuComponente.js
+
+import React from 'react';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import theme from './caminho/do/seu/theme';
+
+const SeuComponente = () => {
+  const windowWidth = Dimensions.get('window').width;
+  const windowHeight = Dimensions.get('window').height;
+
+  // Suponha que você queira ajustar o padding com base na largura da tela
+  let paddingSize = theme.padding.medium;
+  if (windowWidth < 600) {
+    paddingSize = theme.padding.small;
+  } else if (windowWidth > 1000) {
+    paddingSize = theme.padding.large;
+  }
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.text}>Olá, Mundo!</Text>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: theme.colors.background,
+    padding: paddingSize, // Utilizando o padding ajustável com base nas dimensões
+  },
+  text: {
+    color: theme.colors.text,
+    fontSize: theme.fontSize.medium,
+    fontFamily: theme.fonts.regular,
+  },
+});
+
+export default SeuComponente;
+
+{
+  "build": {
+    "preview": {
+      "android": {
+        "buildType": "apk"
+      }
+    },
+    "preview2": {
+      "android": {
+        "gradleCommand": ":app:assembleRelease"
+      }
+    },
+    "preview3": {
+      "developmentClient": true
+    },
+    "preview4": {
+      "distribution": "internal"
+    },
+    "production": {}
+  }
+}
+
+ "development": {
+      "developmentClient": true,
+      "distribution": "internal"
+    },
+
+
+    Running 10 checks on your project...
+✔ Check Expo config for common issues
+✔ Check package.json for common issues
+✔ Check dependencies for packages that should not be installed directly
+✔ Check for common project setup issues
+✔ Check npm/ yarn versions
+✖ Check Expo config (app.json/ app.config.js) schema
+✖ Check that packages match versions required by installed Expo SDK
+✔ Check for legacy global CLI installed locally
+✔ Check that native modules do not use incompatible support packages
+✖ Check that native modules use compatible support package versions for installed Expo SDK
+Detailed check results:
+Expected package @expo/config-plugins@~7.2.2
+Found invalid:
+  @expo/config-plugins@7.4.0
+  @expo/config-plugins@7.5.0
+  (for more info, run: npm why @expo/config-plugins)
+Expected package @expo/prebuild-config@~6.2.4
+Found invalid:
+  @expo/prebuild-config@6.4.0
+  (for more info, run: npm why @expo/prebuild-config)
+Error: Problem validating asset fields in /home/expo/workingdir/build/app.json. Learn more: https://docs.expo.dev/
+ • Field: Android.adaptiveIcon.foregroundImage - image should be square, but the file at './src/assets/global/pera.png' has dimensions 65x73.
+ • Field: icon - image should be square, but the file at './src/assets/global/pera.png' has dimensions 65x73.
+Some dependencies are incompatible with the installed expo version:

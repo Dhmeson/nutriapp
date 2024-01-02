@@ -1,0 +1,72 @@
+import { StyleSheet } from "react-native";
+import {
+  responsiveHeight,
+  responsiveWidth,
+  responsiveFontSize
+} from "react-native-responsive-dimensions";
+ 
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: "center",
+    height: responsiveHeight(50), // 50% of window height
+    width: responsiveWidth(50), // 50% of window width
+    alignItems: "center"
+  },
+  sampleText: {
+    fontSize: responsiveFontSize(2) // 2% of total window size
+  }
+});
+
+import { StyleSheet } from "react-native";
+import {
+  responsiveScreenHeight,
+  responsiveScreenWidth,
+  responsiveScreenFontSize
+} from "react-native-responsive-dimensions";
+ 
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: "center",
+    height: responsiveScreenHeight(50), // 50% of Screen height
+    width: responsiveScreenWidth(50), // 50% of Screen width
+    alignItems: "center"
+  },
+  sampleText: {
+    fontSize: responsiveScreenFontSize(2) // 2% of total screen size
+  }
+});
+
+import React from "react";
+import { View } from "react-native";
+import {
+  useResponsiveHeight,
+  useResponsiveWidth
+} from "react-native-responsive-dimensions";
+ 
+const App = () => {
+  const height = useResponsiveHeight(25);
+  const width = useResponsiveWidth(25);
+ 
+  return <View style={{ height, width }} />;
+};
+
+import React, { useCallback } from "react";
+import { View, LayoutAnimation } from "react-native";
+import {
+  useResponsiveHeight,
+  useResponsiveWidth,
+  useDimensionsChange
+} from "react-native-responsive-dimensions";
+ 
+const App = () => {
+  const height = useResponsiveHeight(25);
+  const width = useResponsiveWidth(25);
+ 
+  useDimensionsChange(
+    useCallback(({ window, screen }) => {
+      LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    }, [])
+  );
+ 
+  return <View style={{ height, width }} />;
+};
