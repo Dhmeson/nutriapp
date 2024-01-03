@@ -2,15 +2,15 @@ import React from 'react';
 import { StyleSheet, Text, SafeAreaView, View, TouchableOpacity } from 'react-native';
 import { responsiveFontSize, responsiveScreenHeight, responsiveScreenWidth, } from 'react-native-responsive-dimensions';
 import { theme } from '../theme';
-import { HeaderLogo } from '../componentes/global/HeaderLogo';
 //import { useNavigation } from '@react-navigation/native';
 //import { routerProps } from '../types/routes';
 import { ScheduleCard } from '../componentes/ScheduleCard';
+import { HeaderLogoBackButton } from '../componentes/global/HeaderLogoBackButton';
 export default function ScheduleScreen() {
 //const { navigate } = useNavigation<routerProps>();
   return (
     <SafeAreaView style={styles.conteiner}>   
-      <HeaderLogo/>
+      <HeaderLogoBackButton/>
       <Text style={styles.title}>Informações de consultas</Text>
       <View style={styles.main}>
         <Text style={styles.describe}>Proxima consulta</Text>
