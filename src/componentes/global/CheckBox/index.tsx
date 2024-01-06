@@ -6,25 +6,27 @@ import FontAwesome from "@expo/vector-icons/FontAwesome";
 
 interface CheckBoxProps{
     isChecked: boolean;
-    onChange: any;
-    checkboxColor:string
-    checkedBoxColor:string
-    uncheckedBoxColor:string
-    textColor:string
-    label:string
+    onChange: (data:any)=>void;
+    checkboxColor?:string
+    checkedBoxColor?:string
+    uncheckedBoxColor?:string
+    textColor?:string
+    label?:string
 
 }
-export function CheckBox({ isChecked, onChange, checkboxColor, checkedBoxColor, uncheckedBoxColor, textColor, label }:CheckBoxProps) {
-    const [checked, setChecked] = useState(isChecked || false);
+export function CheckBox({ isChecked, onChange, checkboxColor='white', checkedBoxColor='white', uncheckedBoxColor='white', textColor='white', label='white' }:CheckBoxProps) {
+    const [checked, setChecked] = useState(isChecked);
   
     const toggleCheck = () => {
-      setChecked(!checked);
+     setChecked(!checked);
       if (onChange) {
         onChange(!checked);
       }
     };
-  
+   // 
+
     return (
+      !checked?
       <View style={styles.checkboxContainer}>
         <TouchableOpacity
           style={[
@@ -44,14 +46,13 @@ export function CheckBox({ isChecked, onChange, checkboxColor, checkedBoxColor, 
             ]
         }>
         </View>
-        {/* <FontAwesome  size={30} name="check" color={'black'}/> */}
 
           
         </TouchableOpacity>
         <Text style={[styles.checkboxText, { color: textColor || theme.colors.textGray }]}>
           {label || ''}
         </Text>
-      </View>
+      </View>:<FontAwesome  size={responsiveScreenHeight(3)} name="check" color={theme.colors.pink} onPress={()=>toggleCheck()}/>
     );
   }
 const styles = StyleSheet.create({
@@ -62,8 +63,8 @@ checkboxContainer: {
   marginBottom: 20,
 },
 checkbox: {
-  width: responsiveScreenWidth(5),
-  height: responsiveScreenWidth(5),
+  width: responsiveScreenWidth(6),
+  height: responsiveScreenWidth(6),
   borderRadius: 4,
   borderWidth: 2,
   borderColor: theme.colors.pink,
@@ -72,16 +73,16 @@ checkbox: {
   justifyContent: 'center',
 },
 checkedBox: {
-  width: responsiveScreenWidth(3.7),
-  height: responsiveScreenWidth(3.7),
+  width: responsiveScreenWidth(3.9),
+  height: responsiveScreenWidth(3.9),
   backgroundColor: theme.colors.pink,
   borderRadius: 2,
 },
 uncheckedBox: {
-  width: responsiveScreenWidth(3.7),
-  height: responsiveScreenWidth(3.7),
+  width: responsiveScreenWidth(4),
+  height: responsiveScreenWidth(4),
   borderRadius: 2,
-  borderWidth:0.9,
+  borderWidth:0.5,
 },
 checkboxText: {
   color: theme.colors.textGray,
